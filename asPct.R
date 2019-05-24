@@ -83,9 +83,3 @@ splice.tables <- function(x, rowpct = FALSE, marginals = FALSE) {
 
 }
 
-# ideally, a function would return something like Ctables - basically several tables with different metrics (counts, percentages) for common items spliced together. The above two functions take tables (counts) and return them as col or row percents. An ideal fxn might look like this:
-# ctable.r <- function(table, as.col.pct = FALSE, as.row.pct = FALSE, spliced = TRUE)
-# where perhaps spliced arg blends the tables (t1 col1, t2 col1, t1 col2, t2 col2, etc), and as.row.pct and as.col.pct calls the functions I have or something like them. To get even more interesting, add further functionality like a FUN arg in apply(), e.g., get means ratehr than freq dist.
-# this already usefully returns a data frame, with names (provided through table() ), so it is easily assigned as a new data frame...meaining it could easily be piped %>%, too.
-# this already writes.*() fairly well, too, except that colnames get "." in place of spaces, and (sometimes a problem) rownames are carried forward.
-# 2018-12-13 11:18:02 EST updated these three functions to return() instead of print(), so i won't need to sink() this anymore...can't believe I hadn't thought of that sooner! Also removed all round()'s, so that a greater number of digits are retained
