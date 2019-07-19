@@ -42,7 +42,9 @@ splice.tables <- function(x, rowpct = FALSE, marginals = FALSE) {
     y <- as.col.pct(x)
   }
   sink()
+  closeAllConnections()
 
+  
   # OMIT marginals by default
   if (marginals == FALSE) {
     if (any(grepl("Total", colnames(y)))) {

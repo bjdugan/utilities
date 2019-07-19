@@ -25,7 +25,9 @@ log_project <- function(mes, dir = "./") {
 }
 
 add_project <- function(dir = "./"){
-  stopifnot(!dir.exists(dir))
+  require(dplyr)
+  require(stringr)
+  #stopifnot(!dir.exists(dir))
   
   if (!dir.exists(dir)) {
     dir.create(dir)
@@ -36,10 +38,16 @@ add_project <- function(dir = "./"){
   
   dir.create(paste0(dir, "/data"))
   dir.create(paste0(dir, "/plots"))
+  dir.create(paste0(dir, "/references"))
   log_project(paste("Beginning project log for", project), dir = dir)
 
 }
 
+catchup <- function(dir = "/", n = 8) {
+  # preview last n lines
+  
+  
+}
 # # example (not run) ####
 # dir <- "C:/Users/bjdugan/Desktop/example"
 # add_project(dir)
