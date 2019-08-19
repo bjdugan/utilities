@@ -43,7 +43,7 @@ add_project <- function(dir = "./"){
 
 }
 
-catchup <- function(dir = "/", n = 8) {
+catchup <- function(dir = "./", n = 8) {
   # preview last n lines
   
   
