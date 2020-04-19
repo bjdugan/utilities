@@ -36,9 +36,12 @@ add_project <- function(dir = "./"){
     unlist() %>% 
     `[`(length(.))
   
+  
   dir.create(paste0(dir, "/data"))
   dir.create(paste0(dir, "/plots"))
   dir.create(paste0(dir, "/references"))
+  
+
   log_project(paste("Beginning project log for", project), dir = dir)
 
 }
