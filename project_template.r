@@ -1,7 +1,9 @@
 # project template
 # a simple and consistent way to add project logs and new project directories. 
 # can be used prior to adding .Rproj to existing directory.
-
+# 
+# add_project needs to be fixed to actually include the dir name
+# also add options to not include other folders.
 log_project <- function(mes, dir = "./") {
   stopifnot(is.character(mes), 
             dir.exists(dir))
