@@ -32,7 +32,7 @@ NSSEcolors <- list(
     "nsse_gold" = "#EFAA22",
     "nsse_darkorange" = "#855723",
     "nsse_blue" = "#4189dd",
-    "nsse_lightgrey" = "#cccccc",
+    "nsse_lightgrey" = "#D9D9D9", #CCCCCC might be too dark for Bob's; rgb(217, 217, 217, .5, maxColorValue = 255)
     "nsse_plum" = "#7a1a57")),
   standard4_grad5 = lapply(list(
     # from htmlcsscolor.com/hex, picking every other, where base color is middle, light to dark
