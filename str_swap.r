@@ -4,7 +4,8 @@
 str_swap <- function(x, char = "_"){
   strsplit(x, char) |>
     lapply(rev) |>
-    lapply(paste0, collapse = char)
+    lapply(paste0, collapse = char) |> 
+    unlist()
 }
 # e.g. 
 #str_swap(c("a_1", "a_2", "a_3"))
