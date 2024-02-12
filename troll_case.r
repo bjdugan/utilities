@@ -16,4 +16,4 @@ tRoLl_cAsE <- function(x){
   x[i] <- toupper(x[i])
   return(paste0(x, collapse = ""))
 }
-tRoLl_cAsE("But socialism kills people!")
+tRoLl_cAsE("They've taken the hobbits to Isengard!")
