@@ -6,8 +6,11 @@ fetch_ipeds_labels <- function(conn, name, yr) {
   # where NSSE is same period, but admin in spring, so NSSE22 is IPEDS 2021-22 (21)
   # hope their naming convetion hasn't changed over years
   require(dplyr)
-  require(DBI)
+  #require(DBI)
+  # perhaps extend this to alternatively query vartable to pull other contextualizing data
+  # eg for those w/o valueLabels (all counts), get vartable$varTitle or longDescription
   
+  # for pmap or lapply, will need to rethink conn
   tbl(conn, paste0("valuesets", yr)) |>  
     filter(varName == name) |>  
     select(!!sym(name) := Codevalue, valueLabel) |> 
