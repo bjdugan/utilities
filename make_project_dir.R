@@ -7,10 +7,7 @@ make_project_dir <- function(
 {
   # create a project directory and related files  
   new_dir <- paste0(path, "/", name, "/")
-  
-  # windows follows C:/users/username
-  if (is.null(user)) user <- unlist(strsplit(getwd(), "/"))[3]
-  
+
   if (!dir.exists(new_dir)) {
     dir.create(new_dir)
     
@@ -23,28 +20,8 @@ make_project_dir <- function(
                paste0(new_dir, "readme.md"))
     
     # add template process document 
-    file.create(paste0(new_dir, "process_doc.rmd"))
-    paste0(
-      "---\n",
-      "title: Process Document: ", name, "\n",
-      "author: ", user, "\n",
-      "date: ", Sys.Date(), "\n", 
-      "output: html_document\n", 
-      "---\n",
-      "```{r setup, include=FALSE}\n",
-      "# load packages, funs, data here\n",
-      "```\n",
-      "## Purpose\n\n", 
-      "## Background\n\n",
-      "## Scope\n\n",
-      "Owner: ", user, "\n\n",
-      "Support:\n\n",
-      "### Timeline\n\n", 
-      "### Definitions\n\n",
-      "## Process\n\n",
-      "## Resources\n\n"
-    ) |> 
-      writeLines(paste0(new_dir, "process_doc.rmd"))
+    source("make_process_doc.r")
+    make_process_doc(name, path = new_dir, user = user)
     
     # add Rstudio project
     if (isTRUE(project)) usethis::create_project(new_dir)
@@ -57,8 +34,9 @@ make_project_dir <- function(
 
 # create only selected subdirs (e.g. if not making reports), with an actual name (not PC username), and open the Rstudio project.
 # make_project_dir(
-#   name = "my project lite", 
+#   name = "my project lite",
 #   path = "C:/users/bjdugan/desktop/",
-#   subdirs = c("data", "plots"), 
-#   user = "Brendan", 
+#   subdirs = c("data", "plots"),
+#   user = "Brendan",
 #   project = TRUE)
+
