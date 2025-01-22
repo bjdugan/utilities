@@ -15,10 +15,10 @@ make_process_doc <- function(name, path = getwd(), user = NULL, full_opts = TRUE
       paste0(
         'output: \n',
         '\thtml_document:\n',
-        '\ttoc: yes\n',
-        '\ttoc_float: yes\n',
-        '\ttheme: paper\n',
-        '\tcode_folding: hide\n'
+        '\t\ttoc: yes\n',
+        '\t\ttoc_float: yes\n',
+        '\t\ttheme: paper\n',
+        '\t\tcode_folding: hide'
       )
     },
     '---\n',
