@@ -1,0 +1,39 @@
+make_process_doc <- function(name, path = getwd(), user = NULL, full_opts = TRUE) {
+  # for new tasks, processes, projects, create a process document
+  
+  # windows follows C:/users/username
+  if (is.null(user)) user <- unlist(strsplit(getwd(), "/"))[3]
+  
+  file.create(paste0(path, name, ".rmd"))
+
+  paste0(
+    '---\n',
+    'title: "Process Document: ', name, '"\n',
+    'author: "', user, '"\n',
+    'date: "`r Sys.Date()`"\n', 
+    if (!full_opts) {'output: html_document:\n'} else {
+      paste0(
+        'output: \n',
+        '\thtml_document:\n',
+        '\ttoc: yes\n',
+        '\ttoc_float: yes\n',
+        '\ttheme: paper\n',
+        '\tcode_folding: hide\n'
+      )
+    },
+    '---\n',
+    '```{r setup, include=FALSE}\n',
+    '# load packages, funs, data here\n',
+    '```\n',
+    '## Purpose\n\n', 
+    '## Background\n\n',
+    '## Scope\n\n',
+    'Owner: ', user, '\n\n',
+    'Support:\n\n',
+    '### Timeline\n\n', 
+    '### Definitions\n\n',
+    '## Process\n\n',
+    '## Resources\n\n'
+  ) |> 
+    writeLines(paste0(path, name, ".rmd"))
+}
