@@ -4,6 +4,8 @@ make_process_doc <- function(name, path = getwd(), user = NULL, full_opts = TRUE
   # windows follows C:/users/username
   if (is.null(user)) user <- unlist(strsplit(getwd(), "/"))[3]
   
+  if (!grepl("/$", path)) path <- paste0(path, "/")
+  
   file.create(paste0(path, name, ".rmd"))
 
   paste0(
@@ -13,12 +15,13 @@ make_process_doc <- function(name, path = getwd(), user = NULL, full_opts = TRUE
     'date: "`r Sys.Date()`"\n', 
     if (!full_opts) {'output: html_document:\n'} else {
       paste0(
-        'output: \n',
-        '\thtml_document:\n',
-        '\t\ttoc: yes\n',
-        '\t\ttoc_float: yes\n',
-        '\t\ttheme: paper\n',
-        '\t\tcode_folding: hide'
+        'output:\n',
+        '  html_document:\n',
+        '    toc: yes\n',
+        '    toc_float: yes\n',
+        '    theme: paper\n',
+        '    code_folding: hide\n'
+        # could add custom styles.css here?
       )
     },
     '---\n',
@@ -37,3 +40,6 @@ make_process_doc <- function(name, path = getwd(), user = NULL, full_opts = TRUE
   ) |> 
     writeLines(paste0(path, name, ".rmd"))
 }
+# e.g. 
+# make_process_doc("test", user = "me")
+# rmarkdown::render("test.rmd")
