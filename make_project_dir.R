@@ -3,7 +3,8 @@ make_project_dir <- function(
     path = getwd(), 
     subdirs = c("data", "correspondence", "plots", "reports"), 
     user = NULL, 
-    project = FALSE)
+    project = FALSE, 
+    use_css = TRUE)
 {
   # create a project directory and related files  
   new_dir <- paste0(path, "/", name, "/")
@@ -18,6 +19,12 @@ make_project_dir <- function(
     file.create(paste0(new_dir, "readme.md"))
     writeLines(paste0("# ", name, "\n", Sys.time(), "\n\n"),
                paste0(new_dir, "readme.md"))
+    
+    # add css from my github/utilities
+    if (isTRUE(use_css)) {
+      readLines("https://raw.githubusercontent.com/bjdugan/utilities/refs/heads/master/styles.css") |> 
+        writeLines(paste0(new_dir, "/styles.css"))
+    }
     
     # add template process document 
     source("make_process_doc.r")
@@ -38,5 +45,6 @@ make_project_dir <- function(
 #   path = "C:/users/bjdugan/desktop/",
 #   subdirs = c("data", "plots"),
 #   user = "Brendan",
-#   project = TRUE)
+#   project = TRUE, 
+#   use_css = TRUE)
 
