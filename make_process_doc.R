@@ -28,15 +28,15 @@ make_process_doc <- function(name, path = getwd(), user = NULL, full_opts = TRUE
     '```{r setup, include=FALSE}\n',
     '# load packages, funs, data here\n',
     '```\n',
-    '## Purpose\n\n', 
-    '## Background\n\n',
-    '## Scope\n\n',
+    '### Purpose\n\n', 
+    '### Background\n\n',
+    '### Scope\n\n',
     'Owner: ', user, '\n\n',
     'Support:\n\n',
-    '### Timeline\n\n', 
-    '### Definitions\n\n',
-    '## Process\n\n',
-    '## Resources\n\n'
+    '#### Timeline\n\n', 
+    '#### Definitions\n\n',
+    '### Process\n\n',
+    '### Resources\n\n'
   ) |> 
     writeLines(paste0(path, name, ".rmd"))
 }
