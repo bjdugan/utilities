@@ -20,8 +20,8 @@ make_process_doc <- function(name, path = getwd(), user = NULL, full_opts = TRUE
         '    toc: yes\n',
         '    toc_float: yes\n',
         '    theme: paper\n',
-        '    code_folding: hide\n'
-        # could add custom styles.css here?
+        '    code_folding: hide\n',
+        '    css: styles.css\n'
       )
     },
     '---\n',
