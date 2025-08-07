@@ -19,6 +19,7 @@ make_process_doc <- function(name, path = getwd(), user = NULL, full_opts = TRUE
         '  html_document:\n',
         '    toc: yes\n',
         '    toc_float: yes\n',
+        '    toc_depth: 4\n',
         '    theme: paper\n',
         '    code_folding: hide\n',
         '    css: styles.css\n'
