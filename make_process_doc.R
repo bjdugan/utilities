@@ -25,7 +25,7 @@ make_process_doc <- function(name, path = getwd(), user = NULL, full_opts = TRUE
       )
     },
     '---\n',
-    '```{r setup, include=FALSE}\n',
+    '```{r setup, include=', full_opts, '}\n',
     '# load packages, funs, data here\n',
     '```\n',
     '### Purpose\n\n', 
