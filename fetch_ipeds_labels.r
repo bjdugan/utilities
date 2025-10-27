@@ -13,6 +13,21 @@ fetch_ipeds_labels <- function(conn, name, yr) {
   # for pmap or lapply, will need to rethink conn
   tbl(conn, paste0("valuesets", yr)) |>  
     filter(varName == name) |>  
-    select(!!sym(name) := Codevalue, valueLabel) |> 
-    collect()
+    collect() |> 
+    # most of these are stored char but need to join as ints
+    transmute(!!sym(name) := as.integer(Codevalue), 
+              # lots of trailing newlines etc.
+              valueLabel = gsub("^\\s*|\\s*$",  "", valueLabel))
 }
+
+# consider extending for multiple vars, which might exist in multiple tables, or might not have labels in valuesets. Pivoting here only works if they all share same typie (usually int).,
+# left_join(
+#   tbl(ipeds22, "IC2021") |> 
+#     select(UNITID, LEVEL5, CALSYS) |> 
+#     pivot_longer(-UNITID),
+#   tbl(ipeds22, "valuesets21") |> 
+#     filter(varName %in% c("LEVEL5", "CALSYS")) |> 
+#     select(varName, valueLabel),
+#   by = c("name" = "varName")) |> 
+#   select(-value) |> 
+#   pivot_wider(names_from = c(name), values_from = valueLabel)
